@@ -16,10 +16,11 @@
     <h1>My Strava Activities</h1>
     {#each activities as activity}
       <div>
-        <h2>{activity.name}</h2>
-        <p>Type: {activity.type}</p>
-        <p>Distance: {activity.distance} meters</p>
-        <p>Duration: {activity.duration} seconds</p>
+        <h2 class="font-extrabold">{activity.name}</h2>
+        <p>Duration: {activity.elapsed_time} seconds</p>
+        <p>Date: {activity.start_date}</p>
+        <p>Kudos: {activity.kudos_count}</p>
+        <p>Comments: {activity.comment_count}</p>
         <!-- Display other relevant activity data -->
       </div>
     {/each}

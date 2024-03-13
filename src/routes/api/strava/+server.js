@@ -1,28 +1,62 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { STRAVA_ACCESS_TOKEN, STRAVA_REFRESH_TOKEN } from '$env/static/private';
-
-const requiredScopes = 'activity:read_all';
+import { 
+    ACCESS_TOKEN, 
+    REFRESH_TOKEN, 
+    CLIENT_ID, 
+    CLIENT_SECRET 
+} from '$env/static/private';
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {
-  console.log('access token: ', STRAVA_ACCESS_TOKEN);
   const url = new URL('https://www.strava.com/api/v3/athlete/activities');
-  url.searchParams.append('access_token', STRAVA_ACCESS_TOKEN);
-  url.searchParams.append('scope', requiredScopes);
+  url.searchParams.append('access_token', ACCESS_TOKEN);
 
   const response = await fetch(url.toString(), {
     headers: {
-      'Authorization': `Bearer ${STRAVA_ACCESS_TOKEN}`
+      'Authorization': `Bearer ${ACCESS_TOKEN}`
     }
   });
 
   if (!response.ok) {
-    throw new Error(`Strava API error: ${response.status} ${response.statusText}`);
+        // Handle error, e.g., refresh the access token if it has expired
+        const refreshResponse = await fetch('https://www.strava.com/oauth/token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+              client_id: CLIENT_ID,
+              client_secret: CLIENT_SECRET,
+              grant_type: 'refresh_token',
+              refresh_token: REFRESH_TOKEN
+            })
+          });
+
+        const refreshData = await refreshResponse.json();
+        const newAccessToken = refreshData.access_token;
+
+        // Retry the request with the new access token
+        const retryResponse = await fetch(url.toString(), {
+            headers: {
+            'Authorization': `Bearer ${newAccessToken}`
+            }
+        });
+
+        if (!retryResponse.ok) {
+            throw new Error(`Strava API error: ${retryResponse.status} ${retryResponse.statusText}`);
+        }
+
+        const activities = await retryResponse.json();
+        return new Response(JSON.stringify(activities));
   }
+  const buttNames = ["BUTT", "GLUTES", "GLUTE"];
 
   const activities = await response.json();
+  const weightActivities = activities.filter((activity) => 
+                activity.sport_type == 'WeightTraining' && 
+                buttNames.includes(activity.name))
 
-  return new Response(JSON.stringify(activities));
+  return new Response(JSON.stringify(weightActivities));
 }

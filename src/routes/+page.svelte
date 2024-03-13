@@ -1,13 +1,11 @@
 <script>
   import Activities from './activities/+page.svelte';
-  import Auth from './auth/+page.svelte';
 </script>
 
 <div class="bg-peaches bg-cover h-screen ltr-linear-infinite">
   <h1 class="text-3xl font-bold">GluteBoy!!</h1>
   <h3>If you are here, (1) welcome and (2) enjoy the glutes</h3>
-  <!-- <Activities/> -->
-  <Auth/>
+  <Activities/>
 </div>
 
 <style lang="postcss">
