@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
   
     const clientId = '122921';
-    const redirectUri = 'http://localhost:5173';
+    const redirectUri = 'http://localhost:5173/auth/callback';
     const scope = 'activity:read_all'; // Add the required scope here
   
     /**
