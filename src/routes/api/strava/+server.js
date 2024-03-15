@@ -13,11 +13,15 @@ export async function GET() {
   const url = new URL('https://www.strava.com/api/v3/athlete/activities');
   url.searchParams.append('access_token', ACCESS_TOKEN);
 
+  console.log('url: ', url)
+
   const response = await fetch(url.toString(), {
     headers: {
       'Authorization': `Bearer ${ACCESS_TOKEN}`
     }
   });
+
+  console.log("response: ", response);
 
   if (!response.ok) {
         // Handle error, e.g., refresh the access token if it has expired
@@ -49,14 +53,20 @@ export async function GET() {
         }
 
         const activities = await retryResponse.json();
-        return new Response(JSON.stringify(activities));
+        return new Response(filterActivities(activities));
   }
-  const buttNames = ["BUTT", "GLUTES", "GLUTE"];
 
   const activities = await response.json();
-  const weightActivities = activities.filter((activity) => 
+  return new Response(filterActivities(activities));
+}
+
+function filterActivities(activities) {
+
+    const buttNames = ["BUTT", "GLUTES", "GLUTE"];
+
+    const weightActivities = activities.filter((activity) => 
                 activity.sport_type == 'WeightTraining' && 
                 buttNames.includes(activity.name))
 
-  return new Response(JSON.stringify(weightActivities));
+    return JSON.stringify(weightActivities);
 }
