@@ -44,11 +44,11 @@
               <!-- {activity.start_date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}  -->
               {formatDate(activity.start_date)}
             </p>
-            <h3 class="mt-2 text-lg leading-6 font-medium text-gray-900">
+            <h3 class="mt-2 text-lg leading-4 font-medium text-gray-900">
               {activity.name}
             </h3>
           </div>
-          <div class="border-t border-gray-200 py-5">
+          <div class="border-t border-gray-200 py-3">
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6">
               <div class="sm:col-span-1">
                 <dt class="text-xs font-medium text-gray-500">Time</dt>
@@ -62,7 +62,7 @@
                   {activity.average_heartrate} bpm
                 </dd>
               </div>
-              <div class="sm:col-span-1">
+              <div class="sm:col-span-1"> 
                 <dt class="text-xs font-medium text-gray-500">Max HR</dt>
                 <dd class="mt-1 text-xl text-gray-900">
                   {activity.max_heartrate} bpm
@@ -77,6 +77,9 @@
               <!-- Add more activity details as needed -->
             </dl>
           </div>
+        </div>
+        <div class="pl-3 pb-3">
+          {activity.kudos_count}
         </div>
       </div>
 
