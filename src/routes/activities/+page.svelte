@@ -1,12 +1,14 @@
 <script>
     import { onMount } from 'svelte';
     import profilePic from '../../../src/images/profile-pic.jpeg'
+    import peachEmoji from '../../../src/lib/assets/peach_emoji.png'
   
     let activities = [];
   
     onMount(async () => {
       const response = await fetch('/api/strava');
       activities = await response.json();
+      console.log(activities)
     });
 
     function formatDate(date) {
@@ -31,11 +33,11 @@
 <main class="flex flex-col items-center">
     {#each activities as activity}
 
-      <div class="w-1/2 content-center grid grid-cols-12 bg-amber-50 rounded-lg shadow-xl overflow-hidden my-2 opacity-90">
+      <div class="lg:w-1/2 sm:w-3/4 content-center grid grid-cols-12 bg-amber-50 rounded-lg shadow-xl overflow-hidden my-2 opacity-90">
         <div class="pt-7 col-span-1 justify-self-center">
           <img src={profilePic} alt="Image" class="rounded-full w-10 h-10" />
         </div>
-        <div class="col-span-11">
+        <div class="pl-1 col-span-11">
           <div class="py-5">
             <h4 class="text-sm leading-6 font-medium text-gray-900">
               Stephen Osentoski
@@ -49,7 +51,7 @@
             </h3>
           </div>
           <div class="border-t border-gray-200 py-3">
-            <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6">
+            <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-4">
               <div class="sm:col-span-1">
                 <dt class="text-xs font-medium text-gray-500">Time</dt>
                 <dd class="mt-1 text-xl text-gray-900">
@@ -69,17 +71,24 @@
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-xs font-medium text-gray-500">Kudos</dt>
+                <dt class="text-xs font-medium text-gray-500">Comments</dt>
                 <dd class="mt-1 text-xl text-gray-900">
-                  {activity.kudos_count} 
+                  {activity.comment_count} 
                 </dd>
               </div>
               <!-- Add more activity details as needed -->
             </dl>
           </div>
         </div>
-        <div class="pl-3 pb-3">
-          {activity.kudos_count}
+        <div class="pl-3 pb-3 flex">
+          {#each Array(activity.kudos_count) as _, i}
+            {#if i > 0}
+              <img src={peachEmoji} alt="Image" class="rounded-full w-4 h-4 mt-1 ml-[-3] z-10" />
+            {:else}
+              <img src={peachEmoji} alt="Image" class="rounded-full w-4 h-4 mt-1" />
+            {/if}
+          {/each} 
+          <p>{activity.kudos_count}</p>
         </div>
       </div>
 

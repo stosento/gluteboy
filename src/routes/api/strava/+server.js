@@ -1,23 +1,24 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
+import {env} from '$env/dynamic/private';
+//dotenv.config();
 
-import { 
-    ACCESS_TOKEN, 
-    REFRESH_TOKEN, 
-    CLIENT_ID, 
-    CLIENT_SECRET 
-} from '$env/static/private';
+// import { 
+//     ACCESS_TOKEN, 
+//     REFRESH_TOKEN, 
+//     CLIENT_ID, 
+//     CLIENT_SECRET 
+// } from '$env/static/private';
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {
   const url = new URL('https://www.strava.com/api/v3/athlete/activities');
-  url.searchParams.append('access_token', ACCESS_TOKEN);
+  url.searchParams.append('access_token', env.ACCESS_TOKEN);
 
   console.log('url: ', url)
 
   const response = await fetch(url.toString(), {
     headers: {
-      'Authorization': `Bearer ${ACCESS_TOKEN}`
+      'Authorization': `Bearer ${env.ACCESS_TOKEN}`
     }
   });
 
@@ -31,10 +32,10 @@ export async function GET() {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: new URLSearchParams({
-              client_id: CLIENT_ID,
-              client_secret: CLIENT_SECRET,
+              client_id: env.CLIENT_ID,
+              client_secret: env.CLIENT_SECRET,
               grant_type: 'refresh_token',
-              refresh_token: REFRESH_TOKEN
+              refresh_token: env.REFRESH_TOKEN
             })
           });
 
