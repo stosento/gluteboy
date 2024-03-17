@@ -67,7 +67,7 @@ function filterActivities(activities) {
 
     const weightActivities = activities.filter((activity) => 
                 activity.sport_type == 'WeightTraining' && 
-                buttNames.includes(activity.name))
+                buttNames.some(str => activity.name.includes(str)))
 
     return JSON.stringify(weightActivities);
 }

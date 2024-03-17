@@ -79,17 +79,31 @@
               <!-- Add more activity details as needed -->
             </dl>
           </div>
+          <div class="pb-2">
+            <div class="relative">
+              {#each Array(activity.kudos_count) as _, i}
+                {#if i > 0}
+                  <img src={peachEmoji} alt="Image" class="absolute left-{i*2} z-{i*10} w-4 h-4 mt-1" />
+                {:else}
+                  <img src={peachEmoji} alt="Image" class="absolute w-4 h-4 mt-1" />
+                {/if}
+              {/each}
+              {#if activity.kudos_count > 0}
+                <p class="{activity.kudos_count === 3 ? 'ml-9' : 'ml-3'} pt-0.5 text-xs text-gray-500"> &#x2022; {activity.kudos_count} peaches</p>
+              {/if}
+            </div>
+
+            
+            <!-- <div class="inline-block after:content=['{activity.kudos_count}'] after:ml-2"> -->
+          </div>
         </div>
-        <div class="pl-3 pb-3 flex">
-          {#each Array(activity.kudos_count) as _, i}
-            {#if i > 0}
-              <img src={peachEmoji} alt="Image" class="rounded-full w-4 h-4 mt-1 ml-[-3] z-10" />
-            {:else}
-              <img src={peachEmoji} alt="Image" class="rounded-full w-4 h-4 mt-1" />
-            {/if}
-          {/each} 
-          <p>{activity.kudos_count}</p>
-        </div>
+
+        
+        <!-- <div class="relative w-64 h-64">
+          <img class="absolute mt-1 left-2 z-10 w-4 h-4" src={peachEmoji} alt="Image 1">
+          <img class="absolute mt-1 left-4 z-20 w-4 h-4" src={peachEmoji} alt="Image 2">
+          <img class="absolute mt-1 left-6 z-30 w-4 h-4" src={peachEmoji} alt="Image 3">
+        </div> -->
       </div>
 
     {/each}
