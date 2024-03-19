@@ -89,7 +89,12 @@
                 {/if}
               {/each}
               {#if activity.kudos_count > 0}
-                <p class="{activity.kudos_count === 3 ? 'ml-9' : 'ml-3'} pt-0.5 text-xs text-gray-500"> &#x2022; {activity.kudos_count} peaches</p>
+                {#if activity.kudos_count == 1}
+                  <p style="margin-left: 1.25rem" class="pt-0.5 text-xs text-gray-500"> &#x2022; {activity.kudos_count} peach</p>
+                {:else}
+                  <p style="margin-left: {activity.kudos_count/2 + 0.75}rem" class="pt-0.5 text-xs text-gray-500"> &#x2022; {activity.kudos_count} peaches</p>
+                {/if}
+                <!-- <p style="margin-left: {activity.kudos_count/2 + 0.75}rem" class="pt-0.5 text-xs text-gray-500"> &#x2022; {activity.kudos_count} peaches</p> -->
               {/if}
             </div>
 
