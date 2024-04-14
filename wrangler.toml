@@ -7,6 +7,6 @@ NODE_VERSION = "20.11.1"
 
 [build]
 command = "npm run build"
-upload.dir = "build"
-output.dir = "build"
-pages_build_output_dir = "build"
+upload.dir = "./dist"
+output.dir = "./dist"
+pages_build_output_dir = "./dist"
