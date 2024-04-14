@@ -1,0 +1,7 @@
+name = "gluteboy"
+account_id = "a69606fcc0fd66638f8562ef17f8e1eb"
+workers_dev = true
+
+[build]
+command = "npm run build"
+upload.dir = "build"
