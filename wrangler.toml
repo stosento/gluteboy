@@ -6,3 +6,4 @@ workers_dev = true
 command = "npm run build"
 upload.dir = "build"
 output.dir = "build"
+pages_build_output_dir = "build"
