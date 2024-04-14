@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv';
-
 if (process.env.NODE_ENV !== 'production') {
-  const result = dotenv.config();
+  const result = require('dotenv-safe').config();
   if (result.error) {
     throw result.error;
   }

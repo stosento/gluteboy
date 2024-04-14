@@ -1,4 +1,3 @@
-import * as dotenv from 'dotenv';
 import {env} from '$env/dynamic/private';
 //dotenv.config();
 
