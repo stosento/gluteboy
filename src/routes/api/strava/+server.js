@@ -13,8 +13,8 @@ import {env} from '$env/dynamic/private';
 export async function GET() {
   const url = new URL('https://www.strava.com/api/v3/athlete/activities');
   url.searchParams.append('access_token', env.ACCESS_TOKEN);
-
-  console.log('url: ', url)
+  url.searchParams.append('after', 1709727029);
+  url.searchParams.append('per_page', '200');
 
   const response = await fetch(url.toString(), {
     headers: {
@@ -68,6 +68,10 @@ function filterActivities(activities) {
     const weightActivities = activities.filter((activity) => 
                 activity.sport_type == 'WeightTraining' && 
                 buttNames.some(str => activity.name.includes(str)))
+
+    weightActivities.sort((a, b) => {
+        return new Date(b.start_date) - new Date(a.start_date);
+    });
 
     return JSON.stringify(weightActivities);
 }
