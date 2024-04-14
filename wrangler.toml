@@ -5,3 +5,4 @@ workers_dev = true
 [build]
 command = "npm run build"
 upload.dir = "build"
+output.dir = "build"
