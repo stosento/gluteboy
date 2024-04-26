@@ -40,7 +40,7 @@
 		"@sveltejs/adapter-vercel": "next"
 	},
 	"engines": {
-		"node": "20.11.1"
+		"node": ">=20.11.1"
 	},
 	"type": "module",
 	"dependencies": {
