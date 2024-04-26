@@ -1,12 +1,5 @@
 name = "gluteboy"
 account_id = "a69606fcc0fd66638f8562ef17f8e1eb"
+zone_id = "2cb4a78d6658bef76acc1012fb92dc61"
+type = "webpack"
 workers_dev = true
-
-[build.environment]
-NODE_VERSION = "20.11.1"
-
-[build]
-command = "npm run build"
-upload.dir = "./dist"
-output.dir = "./dist"
-pages_build_output_dir = "./dist"
