@@ -16,7 +16,7 @@ export default {
         // Add more values as needed
       },
       backgroundImage: {
-        'peaches': "url('./src/lib/assets/peaches.png')"
+        'peaches': "url('/peaches.png')"
       },
     },
   },

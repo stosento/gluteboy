@@ -1,14 +1,13 @@
 <script>
     import { onMount } from 'svelte';
-    import profilePic from '../../../src/images/profile-pic.jpeg'
-    import peachEmoji from '../../../src/lib/assets/peach_emoji.png'
+    import profilePic from '$lib/assets/profile-pic.jpeg';
+    import peachEmoji from '$lib/assets/peach_emoji.png';
   
     let activities = [];
   
     onMount(async () => {
       const response = await fetch('/api/strava');
       activities = await response.json();
-      console.log(activities)
     });
 
     function formatDate(date) {

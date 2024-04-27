@@ -21,8 +21,6 @@ export async function GET() {
     }
   });
 
-  console.log("response: ", response);
-
   if (!response.ok) {
         // Handle error, e.g., refresh the access token if it has expired
         const refreshResponse = await fetch('https://www.strava.com/oauth/token', {

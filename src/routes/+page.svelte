@@ -11,7 +11,7 @@
 
 <style lang="postcss">
   :global(body) {
-    background-image: url('./src/lib/assets/peaches.png');
+    background-image: url('/peaches.png');
     background-size: cover;
     background-attachment: fixed;
   }

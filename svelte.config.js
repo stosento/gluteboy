@@ -12,6 +12,9 @@ const config = {
 		adapter: vercel(),
 		alias: {
 			$lib: path.resolve('./src/lib')
+		},
+		files: {
+			assets: 'static'
 		}
 	}
 };
