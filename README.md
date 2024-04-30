@@ -1,38 +1,18 @@
-# create-svelte
+# Gluteboy.com
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Created a joking little site for a few reasons:
+1) gluteboy.com was available
+2) I wanted to learn SvelteKit
+3) My friend thought it was hilarious.
 
-## Creating a project
+## Tech Stack Used
+- SvelteKit
+- TailwindCSS
+- Vercel (hosting & deployments)
+- Cloudflare (DNS)
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Future Features
+- "Join the Glute Army" -- ability to join and have your very own glute exercises appear.
+- Comments appear under each activity
+- Clean up the display of activities / render only when activities have loaded
+- Caching mechanism to reduce # of calls to Strava API.
